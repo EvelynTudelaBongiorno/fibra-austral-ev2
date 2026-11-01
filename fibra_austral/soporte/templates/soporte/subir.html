@@ -1,0 +1,54 @@
+{% extends "soporte/base.html" %}
+
+{% block estilos %}
+<style>
+  .carga { max-width: 680px; }
+  .zona {
+    display: block; border: 1.5px dashed #CFCFCF; border-radius: var(--radio);
+    padding: 36px 24px; text-align: center; background: var(--fondo); margin: 22px 0;
+  }
+  .zona p { margin: 0 0 14px; color: var(--gris); }
+  input[type=file] { font: inherit; font-size: 14px; color: var(--gris); }
+  input[type=file]::file-selector-button {
+    font: inherit; font-size: 14px; font-weight: 600; margin-right: 12px; cursor: pointer;
+    background: var(--blanco); color: var(--texto); border: 1px solid var(--borde);
+    border-radius: 8px; padding: 9px 16px;
+  }
+  .columnas { display: flex; flex-wrap: wrap; gap: 8px; }
+  .columnas code {
+    font-family: Consolas, "Courier New", monospace; font-size: 12.5px; background: var(--fondo);
+    border: 1px solid var(--borde); border-radius: 6px; padding: 3px 8px;
+  }
+  .pie-carga { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+  .pie-carga small { color: var(--gris); font-size: 13px; }
+</style>
+{% endblock %}
+
+{% block titulo %}Tablero de la mesa de ayuda{% endblock %}
+{% block subtitulo %}Cargue el archivo de tickets para generar el tablero de servicio al cliente.{% endblock %}
+
+{% block contenido %}
+<section class="tarjeta carga">
+  <h2>Archivo de tickets</h2>
+  <p class="descripcion">Excel (.xlsx) con la hoja <code>tickets</code> y estas diez columnas:</p>
+  <div class="columnas">
+    {% for c in columnas %}<code>{{ c }}</code>{% endfor %}
+  </div>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label class="zona">
+      <p>Seleccione el archivo desde su computador</p>
+      <input type="file" name="archivo" accept=".xlsx">
+    </label>
+
+    {% if error %}<p class="alerta">{{ error }}</p>{% endif %}
+
+    <div class="pie-carga">
+      <small>El archivo se lee en memoria con pandas y no se guarda en el servidor.<br>
+        La limpieza se hace en la aplicación: el Excel no se modifica.</small>
+      <button type="submit" class="boton">Generar tablero</button>
+    </div>
+  </form>
+</section>
+{% endblock %}

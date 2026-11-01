@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block titulo_pagina %}Fibra Austral · Mesa de ayuda{% endblock %}</title>
+  <style>
+    :root {
+      --acento: #D9480F; --acento-suave: #FBE9E0; --texto: #1F1F1F; --gris: #5C5C5C;
+      --gris-claro: #8E8E8E; --borde: #E3E3E3; --fondo: #F6F6F4; --blanco: #FFFFFF;
+      --verde: #2E7D32; --rojo: #C62828; --radio: 12px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--fondo); color: var(--texto);
+      font-family: Calibri, Carlito, "Segoe UI", Arial, sans-serif; font-size: 15px; line-height: 1.45;
+    }
+    header.barra {
+      background: var(--blanco); border-bottom: 1px solid var(--borde);
+      padding: 14px 32px; display: flex; justify-content: space-between; align-items: center;
+    }
+    .marca { display: flex; align-items: center; gap: 12px; }
+    .marca .logo {
+      width: 34px; height: 34px; border-radius: 9px; background: var(--acento);
+      display: grid; place-items: center; color: white; font-weight: 700; font-size: 15px;
+    }
+    .marca strong { display: block; font-size: 16px; }
+    .marca span { display: block; font-size: 12.5px; color: var(--gris); }
+    main { max-width: 1180px; margin: 0 auto; padding: 28px 32px 48px; }
+    .encabezado h1 { margin: 0 0 4px; font-size: 26px; letter-spacing: -0.2px; }
+    .encabezado p { margin: 0; color: var(--gris); }
+    .tarjeta {
+      background: var(--blanco); border: 1px solid var(--borde); border-radius: var(--radio);
+      padding: 22px 24px; margin-top: 20px;
+    }
+    .tarjeta h2 { margin: 0 0 6px; font-size: 18px; }
+    .descripcion { margin: 0 0 14px; color: var(--gris); font-size: 14px; }
+    .boton {
+      display: inline-block; background: var(--acento); color: white; border: 0; cursor: pointer;
+      padding: 10px 18px; border-radius: 8px; font: inherit; font-weight: 600; font-size: 14px;
+      text-decoration: none;
+    }
+    .boton-secundario { background: var(--blanco); color: var(--texto); border: 1px solid var(--borde); }
+    .alerta {
+      background: #FDECEA; color: var(--rojo); border-radius: 8px; padding: 10px 14px;
+      font-size: 14px; margin: 0 0 14px;
+    }
+    table.tabla { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+    table.tabla th {
+      text-align: left; font-weight: 600; color: var(--gris); background: var(--fondo);
+      padding: 8px 10px; border-bottom: 1px solid var(--borde);
+    }
+    table.tabla td { padding: 7px 10px; border-bottom: 1px solid #F0F0F0; vertical-align: top; }
+    .derecha { text-align: right; }
+    footer { text-align: center; color: var(--gris-claro); font-size: 12.5px; padding: 0 0 28px; }
+  </style>
+  {% block estilos %}{% endblock %}
+</head>
+<body>
+  <header class="barra">
+    <div class="marca">
+      <div class="logo">FA</div>
+      <div>
+        <strong>Fibra Austral</strong>
+        <span>Gerencia de Servicio al Cliente · Mesa de ayuda</span>
+      </div>
+    </div>
+    <div>{% block acciones %}{% endblock %}</div>
+  </header>
+  <main>
+    <div class="encabezado">
+      <h1>{% block titulo %}Cargar datos{% endblock %}</h1>
+      <p>{% block subtitulo %}{% endblock %}</p>
+    </div>
+    {% block contenido %}{% endblock %}
+  </main>
+  <footer>{% block pie %}Datos ficticios con fines académicos · Visualización de Datos, INACAP{% endblock %}</footer>
+</body>
+</html>

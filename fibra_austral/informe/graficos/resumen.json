@@ -1,0 +1,505 @@
+{
+  "diagnostico": {
+    "filas": 3223,
+    "columnas": 10,
+    "duplicados": 30,
+    "tickets_repetidos": 30,
+    "detalle": [
+      {
+        "columna": "ticket",
+        "tipo": "str",
+        "nulos": 0,
+        "distintos": 3193
+      },
+      {
+        "columna": "fecha",
+        "tipo": "object",
+        "nulos": 0,
+        "distintos": 397
+      },
+      {
+        "columna": "hora",
+        "tipo": "str",
+        "nulos": 0,
+        "distintos": 1000
+      },
+      {
+        "columna": "canal",
+        "tipo": "str",
+        "nulos": 0,
+        "distintos": 15
+      },
+      {
+        "columna": "turno",
+        "tipo": "str",
+        "nulos": 0,
+        "distintos": 10
+      },
+      {
+        "columna": "tipo_problema",
+        "tipo": "str",
+        "nulos": 0,
+        "distintos": 20
+      },
+      {
+        "columna": "ejecutivo",
+        "tipo": "str",
+        "nulos": 0,
+        "distintos": 10
+      },
+      {
+        "columna": "duracion_min",
+        "tipo": "object",
+        "nulos": 20,
+        "distintos": 399
+      },
+      {
+        "columna": "resuelto",
+        "tipo": "str",
+        "nulos": 0,
+        "distintos": 9
+      },
+      {
+        "columna": "satisfaccion",
+        "tipo": "float64",
+        "nulos": 595,
+        "distintos": 10
+      }
+    ]
+  },
+  "bitacora": [
+    {
+      "paso": 1,
+      "problema": "Filas duplicadas (mismo ticket y mismos datos)",
+      "filas": 30,
+      "decision": "Se eliminan: es la misma atención contada dos veces"
+    },
+    {
+      "paso": 2,
+      "problema": "Columna canal escrita de 15 formas distintas",
+      "filas": 190,
+      "decision": "Se unifica a los 4 nombres oficiales"
+    },
+    {
+      "paso": 3,
+      "problema": "Columna turno escrita de 10 formas distintas",
+      "filas": 150,
+      "decision": "Se unifica a los 3 nombres oficiales"
+    },
+    {
+      "paso": 4,
+      "problema": "Columna tipo_problema escrita de 20 formas distintas",
+      "filas": 180,
+      "decision": "Se unifica a los 6 nombres oficiales"
+    },
+    {
+      "paso": 5,
+      "problema": "Columna resuelto escrita de 9 formas distintas",
+      "filas": 240,
+      "decision": "Se unifica a los 2 nombres oficiales"
+    },
+    {
+      "paso": 6,
+      "problema": "Turno que no coincide con la hora de inicio",
+      "filas": 0,
+      "decision": "Se verifica: confirma que AM = Mañana y PM = Tarde"
+    },
+    {
+      "paso": 7,
+      "problema": "Fecha escrita como texto dd/mm/aaaa",
+      "filas": 40,
+      "decision": "Se convierte al mismo tipo fecha que el resto"
+    },
+    {
+      "paso": 8,
+      "problema": "Duración escrita como texto con la unidad «min»",
+      "filas": 25,
+      "decision": "Se quita la unidad y se convierte a número"
+    },
+    {
+      "paso": 9,
+      "problema": "Duración imposible: cero, negativa o mayor a 180 min",
+      "filas": 19,
+      "decision": "Se deja vacía: el ticket existió y cuenta para demanda y resolución, pero no para el tiempo"
+    },
+    {
+      "paso": 10,
+      "problema": "Duración vacía en el archivo",
+      "filas": 20,
+      "decision": "No se rellena: inventar un tiempo movería el promedio; la fila se conserva"
+    },
+    {
+      "paso": 11,
+      "problema": "Satisfacción fuera de la escala 1 a 7 (0, 8 o 10)",
+      "filas": 12,
+      "decision": "Se deja vacía: no se sabe qué nota quiso poner el cliente"
+    },
+    {
+      "paso": 12,
+      "problema": "Satisfacción vacía: el cliente no respondió la encuesta",
+      "filas": 586,
+      "decision": "No es un error: la fila se conserva y solo se excluye del promedio"
+    }
+  ],
+  "homologacion": [
+    {
+      "columna": "canal",
+      "original": "'TELÉFONO'",
+      "oficial": "Teléfono",
+      "filas": 31
+    },
+    {
+      "columna": "canal",
+      "original": "'telefono'",
+      "oficial": "Teléfono",
+      "filas": 27
+    },
+    {
+      "columna": "canal",
+      "original": "'Fono'",
+      "oficial": "Teléfono",
+      "filas": 27
+    },
+    {
+      "columna": "canal",
+      "original": "'Chat '",
+      "oficial": "Chat",
+      "filas": 25
+    },
+    {
+      "columna": "canal",
+      "original": "'chat'",
+      "oficial": "Chat",
+      "filas": 22
+    },
+    {
+      "columna": "canal",
+      "original": "'WSP'",
+      "oficial": "WhatsApp",
+      "filas": 13
+    },
+    {
+      "columna": "canal",
+      "original": "'E-mail'",
+      "oficial": "Correo",
+      "filas": 11
+    },
+    {
+      "columna": "canal",
+      "original": "'whatsapp'",
+      "oficial": "WhatsApp",
+      "filas": 9
+    },
+    {
+      "columna": "canal",
+      "original": "'Whatsapp'",
+      "oficial": "WhatsApp",
+      "filas": 9
+    },
+    {
+      "columna": "canal",
+      "original": "'Email'",
+      "oficial": "Correo",
+      "filas": 9
+    },
+    {
+      "columna": "canal",
+      "original": "'correo'",
+      "oficial": "Correo",
+      "filas": 7
+    },
+    {
+      "columna": "turno",
+      "original": "'PM'",
+      "oficial": "Tarde",
+      "filas": 31
+    },
+    {
+      "columna": "turno",
+      "original": "'tarde'",
+      "oficial": "Tarde",
+      "filas": 23
+    },
+    {
+      "columna": "turno",
+      "original": "'MAÑANA'",
+      "oficial": "Mañana",
+      "filas": 22
+    },
+    {
+      "columna": "turno",
+      "original": "'mañana'",
+      "oficial": "Mañana",
+      "filas": 22
+    },
+    {
+      "columna": "turno",
+      "original": "'AM'",
+      "oficial": "Mañana",
+      "filas": 21
+    },
+    {
+      "columna": "turno",
+      "original": "'Noche '",
+      "oficial": "Noche",
+      "filas": 20
+    },
+    {
+      "columna": "turno",
+      "original": "'noche'",
+      "oficial": "Noche",
+      "filas": 11
+    },
+    {
+      "columna": "tipo_problema",
+      "original": "'Facturacion'",
+      "oficial": "Facturación",
+      "filas": 23
+    },
+    {
+      "columna": "tipo_problema",
+      "original": "'facturación'",
+      "oficial": "Facturación",
+      "filas": 21
+    },
+    {
+      "columna": "tipo_problema",
+      "original": "'Lentitud'",
+      "oficial": "Internet lento",
+      "filas": 19
+    },
+    {
+      "columna": "tipo_problema",
+      "original": "'sin conexión'",
+      "oficial": "Sin conexión",
+      "filas": 18
+    },
+    {
+      "columna": "tipo_problema",
+      "original": "'cambio plan'",
+      "oficial": "Cambio de plan",
+      "filas": 18
+    },
+    {
+      "columna": "tipo_problema",
+      "original": "'Sin Conexion'",
+      "oficial": "Sin conexión",
+      "filas": 15
+    },
+    {
+      "columna": "tipo_problema",
+      "original": "'Internet Lento'",
+      "oficial": "Internet lento",
+      "filas": 12
+    },
+    {
+      "columna": "tipo_problema",
+      "original": "'Cambio de Plan'",
+      "oficial": "Cambio de plan",
+      "filas": 11
+    },
+    {
+      "columna": "tipo_problema",
+      "original": "'Sin conexion'",
+      "oficial": "Sin conexión",
+      "filas": 10
+    },
+    {
+      "columna": "tipo_problema",
+      "original": "'instalación'",
+      "oficial": "Instalación",
+      "filas": 9
+    },
+    {
+      "columna": "tipo_problema",
+      "original": "'internet lento'",
+      "oficial": "Internet lento",
+      "filas": 8
+    },
+    {
+      "columna": "tipo_problema",
+      "original": "'router'",
+      "oficial": "Router",
+      "filas": 6
+    },
+    {
+      "columna": "tipo_problema",
+      "original": "'Instalacion'",
+      "oficial": "Instalación",
+      "filas": 6
+    },
+    {
+      "columna": "tipo_problema",
+      "original": "'Módem/Router'",
+      "oficial": "Router",
+      "filas": 4
+    },
+    {
+      "columna": "resuelto",
+      "original": "'S'",
+      "oficial": "Sí",
+      "filas": 52
+    },
+    {
+      "columna": "resuelto",
+      "original": "'sí'",
+      "oficial": "Sí",
+      "filas": 46
+    },
+    {
+      "columna": "resuelto",
+      "original": "'Si'",
+      "oficial": "Sí",
+      "filas": 46
+    },
+    {
+      "columna": "resuelto",
+      "original": "'SI'",
+      "oficial": "Sí",
+      "filas": 37
+    },
+    {
+      "columna": "resuelto",
+      "original": "'N'",
+      "oficial": "No",
+      "filas": 23
+    },
+    {
+      "columna": "resuelto",
+      "original": "'NO'",
+      "oficial": "No",
+      "filas": 22
+    },
+    {
+      "columna": "resuelto",
+      "original": "'no'",
+      "oficial": "No",
+      "filas": 14
+    }
+  ],
+  "kpis": [
+    {
+      "etiqueta": "Duración promedio de la atención",
+      "valor": "12,9",
+      "unidad": "min",
+      "meta": "Meta: 10 min o menos",
+      "cumple": false,
+      "comparacion": "Año completo 2025",
+      "base": "3.154 tickets con duración válida"
+    },
+    {
+      "etiqueta": "Resolución en el primer contacto",
+      "valor": "75,2",
+      "unidad": "%",
+      "meta": "Meta: 80 % o más",
+      "cumple": false,
+      "comparacion": "Año completo 2025",
+      "base": "3.193 tickets"
+    },
+    {
+      "etiqueta": "Satisfacción promedio del cliente",
+      "valor": "5,24",
+      "unidad": "de 7",
+      "meta": "Meta: 5,5 o más",
+      "cumple": false,
+      "comparacion": "Año completo 2025",
+      "base": "2.595 encuestas respondidas"
+    }
+  ],
+  "graficos": [
+    {
+      "nivel": 1,
+      "n": 1,
+      "pregunta": "¿Cuánto demora una atención y cómo se reparten los tiempos? ¿Se cumple la meta de 10 minutos?",
+      "titulo": "El 57 % de las atenciones supera la meta de 10 minutos",
+      "lectura": "La atención típica dura 11,1 min (mediana) y el promedio llega a 12,9 min porque una cola de atenciones largas lo empuja hacia arriba: el 10 % más lento supera los 23 min. La meta de 10 min no se cumple.",
+      "archivo": "g1_distribucion_duracion.png"
+    },
+    {
+      "nivel": 2,
+      "n": 2,
+      "pregunta": "¿Qué turno y qué canal atienden más rápido?",
+      "titulo": "Chat y el turno Mañana son los más rápidos, pero ninguno cumple la meta",
+      "lectura": "Chat promedia 11,4 min y Correo 17,7 min, el más lento. Entre turnos, Mañana promedia 11,9 min y Noche 16,6 min: el turno noche demora 40 % más.",
+      "archivo": "g2_rapidez_canal_turno.png"
+    },
+    {
+      "nivel": 2,
+      "n": 3,
+      "pregunta": "¿Qué tipo de problema concentra el tiempo del equipo, y cuál se resuelve peor en el primer contacto?",
+      "titulo": "Sin conexión consume el 33 % del tiempo del equipo y Router es el que peor se resuelve",
+      "lectura": "Sin conexión suma 226 horas de atención, el 33 % del total aunque es el 24 % de los tickets: cada caso dura más que el resto. Router se resuelve en el primer contacto solo el 57 % de las veces, lejos de la meta de 80 %; 3 de los 6 tipos la cumplen.",
+      "archivo": "g3_problemas_tiempo_resolucion.png"
+    },
+    {
+      "nivel": 2,
+      "n": 4,
+      "pregunta": "¿Cómo evoluciona la demanda durante el año?",
+      "titulo": "La demanda sube en invierno: junio a agosto promedia 31 % más tickets",
+      "lectura": "El período promedia 266 tickets por mes. El máximo es junio con 335 tickets; el mínimo, febrero con 236. El equipo debe planificarse para el alza de mitad de año.",
+      "archivo": "g4_demanda_mensual.png"
+    },
+    {
+      "nivel": 2,
+      "n": 5,
+      "pregunta": "¿Hay relación entre la duración de la atención y la satisfacción del cliente?",
+      "titulo": "A más duración, menor satisfacción: de 5,8 baja a 4,0",
+      "lectura": "La relación es negativa (correlación de -0,29): cada tramo más largo tiene peor nota. Desde el tramo «10 a 15» minutos la satisfacción ya queda bajo la meta de 5,5.",
+      "archivo": "g5_satisfaccion_por_duracion.png"
+    },
+    {
+      "nivel": 3,
+      "n": 2,
+      "pregunta": "¿Qué turno y qué canal atienden más rápido? (cruce turno × canal)",
+      "titulo": "La noche es la más lenta en los 4 canales; Correo de noche llega a 23,0 min",
+      "lectura": "Cruzar las dos variables muestra algo que las barras separadas no: la lentitud del turno noche no se explica por el canal, porque es el más lento en los 4 canales. Ninguna de las 12 combinaciones cumple la meta de 10 min.",
+      "archivo": "g6_turno_canal_duracion.png"
+    },
+    {
+      "nivel": 3,
+      "n": 4,
+      "pregunta": "¿Cómo cambia el uso de cada canal durante el año?",
+      "titulo": "Chat sube de 21 % a 33 % de los tickets (Ene–Mar vs. Oct–Dic); Teléfono baja de 45 % a 35 %",
+      "lectura": "La línea de demanda total esconde un cambio de fondo en el canal: Chat gana 12 puntos en el período y Teléfono pierde 10. Al cierre (Oct–Dic), Teléfono sigue siendo el canal con más tickets, pero si la tendencia continúa el equipo de Chat debe crecer antes que el resto.",
+      "archivo": "g7_participacion_canal.png"
+    },
+    {
+      "nivel": 3,
+      "n": 5,
+      "pregunta": "¿La relación entre duración y satisfacción cambia si el caso se resuelve?",
+      "titulo": "Resolver pesa más que demorar: sin resolver, la nota cae 2,6 puntos en cualquier duración",
+      "lectura": "Al agregar si el caso se resolvió aparece el patrón que el gráfico de tramos ocultaba: alargar la atención cuesta 1,7 puntos entre el tramo más corto y el más largo, pero no resolver cuesta 2,6 puntos en promedio. Un caso resuelto en 20 a 30 min (5,3) deja más conforme que uno no resuelto en menos de 5 (3,8).",
+      "archivo": "g8_satisfaccion_duracion_resolucion.png"
+    },
+    {
+      "nivel": 3,
+      "n": 6,
+      "pregunta": "Pregunta propia: ¿en qué combinaciones de tipo de problema y turno se concentran los tickets que no se resuelven en el primer contacto?",
+      "titulo": "Router de noche solo se resuelve el 40 % de las veces en el primer contacto",
+      "lectura": "12 de las 18 combinaciones quedan bajo la meta de 80 %. Router y Sin conexión fallan en todos los turnos y juntos explican el 49 % de los tickets no resueltos. El turno noche tiene la menor resolución en 6 de los 6 tipos de problema.",
+      "archivo": "g9_resolucion_problema_turno.png"
+    }
+  ],
+  "impactos": {
+    "resolucion_limpia": 75.16442217350455,
+    "resolucion_sin_homologar": 69.49577200125275,
+    "telefono_sin_homologar": 1157.0,
+    "telefono_limpio": 1242.0,
+    "categorias_canal_crudo": 15.0,
+    "duracion_limpia": 12.924064679771718,
+    "duracion_con_imposibles": 13.778285534194769,
+    "duracion_maxima_cruda": 716.0,
+    "duracion_minima_cruda": -33.4,
+    "satisfaccion_limpia": 5.2354527938342965,
+    "satisfaccion_con_fuera_escala": 5.236681887366819,
+    "tickets_con_duplicados": 3223.0,
+    "tickets_sin_duplicados": 3193.0,
+    "duraciones_texto_perdidas": 25.0,
+    "fechas_texto": 40.0,
+    "sin_respuesta": 598.0,
+    "sin_respuesta_pct": 18.728468524898215,
+    "whatsapp_sin_respuesta_pct": 22.18487394957983,
+    "resolucion_solo_respondieron": 74.99036608863199
+  },
+  "etica_titulo": "Con los valores imposibles, Teléfono pasaría a ser el canal más rápido y Cambio de plan dejaría de cumplir la meta"
+}
