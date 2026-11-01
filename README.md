@@ -17,7 +17,8 @@ Evaluación N°2 · Visualización de Datos · INACAP. Datos ficticios con fines
 En Windows:
 
 ```
-cd fibra_austral
+  git clone https://github.com/EvelynTudelaBongiorno/fibra-austral-ev2.git
+  cd fibra-austral-ev2
 python -m venv venv
 venv\Scripts\activate
 pip install -r requirements.txt
@@ -50,7 +51,7 @@ que el filtro funcione sin volver a subir el archivo.
 ## Estructura
 
 ```
-fibra_austral/
+fibra-austral-ev2/
 ├── config/                  # configuración del proyecto Django
 ├── datos/
 │   └── soporte_fibra_austral_2025.xlsx   # archivo original del caso, sin modificar
